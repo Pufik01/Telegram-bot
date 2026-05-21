@@ -1,0 +1,27 @@
+mport os
+from dotenv import load_dotenv
+
+# Загружаем переменные из файла .env
+load_dotenv()
+
+def get_token() -> str:
+    token = os.getenv("TG_BOT_TOKEN")
+    if not token:
+        raise ValueError(
+            "❌ TG_BOT_TOKEN не найден! \n"
+            "TODO: Создайте файл .env и добавьте туда TG_BOT_TOKEN=ваш_токен_бота"
+        )
+    return token
+
+def get_ai_api_key() -> str:
+    key = os.getenv("AI_API_KEY")
+    if not key:
+        raise ValueError(
+            "❌ AI_API_KEY не найден! \n"
+            "TODO: Создайте файл .env и добавьте туда AI_API_KEY=ваш_ключ_cerebras"
+        )
+    return key
+
+# Эндпоинт Cerebras Cloud SDK (совместим с OpenAI форматом)
+CEREBRAS_API_URL = "https://api.cerebras.ai/v1/chat/completions"
+MODEL_NAME = "llama3.1-8b" # Или llama3.1-70b
